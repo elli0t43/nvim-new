@@ -20,6 +20,13 @@ nnoremap("<C-l>", "<C-w>l")
 nnoremap("<C-s>", ":w<CR>")
 nnoremap("<C-Q>", ":wq!<CR>")
 
+-- Alt(meta key) + Backspace to delete one word and alt(meta key) + del to delete backwards
+inoremap("<M-BS>", "<C-o>db")
+inoremap("<M-Del", "<C-o>dw")
+
+-- ctrl + backspace to delete 
+inoremap("<C-BS>", "<C-o>db")
+
 -- J K for moving lines up and down in visual mode
 vnoremap("J", ":m '>+1<CR>gv=gv")
 vnoremap("K", ":m '<-2<CR>gv=gv")
@@ -45,6 +52,9 @@ nnoremap("<leader>x", "<cmd>!chmod +x %<CR>")
 -- Select all
 nnoremap("<C-a>", "gg<S-v>G")
 
+-- terminal
+nnoremap("<leader>tr", ":terminal<CR>")
+
 
 -- PLUGIN HOT KEYS --
 
@@ -61,8 +71,8 @@ nnoremap("<leader>fg", ":Telescope live_grep<CR>", silent)
 nnoremap("<leader>fb", ":Telescope buffers<CR>", silent)
 
 -- COMMENT
-nnoremap("<C-_", "gcc", silent)
-vnoremap("<C-_", "gcc", silent)
+nnoremap("<C-g>", "gcc")
+vnoremap("<C-g>", "gcc")
 
 -- LAZY
 nnoremap("<leader>l", ":Lazy<CR>", silent)
@@ -76,3 +86,5 @@ nnoremap("<leader>m", ":Mason<CR>", silent)
 -- OUTLINE
 nnoremap("<leader>o", ":SymbolsOutlineOpen<CR>", silent)
 nnoremap("<leader>O", ":SymbolsOutlineClose<CR>", silent)
+
+

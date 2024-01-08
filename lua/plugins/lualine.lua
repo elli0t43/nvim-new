@@ -30,8 +30,6 @@ local config = function()
             },
             lualine_z = {
                 'progress',
-                'buffers'
-
             }
         },
         inactive_sections = {

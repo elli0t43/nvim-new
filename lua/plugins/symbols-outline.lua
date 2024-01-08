@@ -2,7 +2,7 @@ local config = function()
     require("symbols-outline").setup({
         highlight_hovered_item = true,
         show_guides = true,
-        position = right,
+        position = 'right',
         relative_width = true,
         width = 25,
         show_symbol_details = true,
