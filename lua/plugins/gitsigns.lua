@@ -6,7 +6,7 @@ local config = function()
             delete = { text = '_' },
             topdelete = { text = '-' },
             changedelete = { text = '~' },
-            untracked = { text = '┆' },
+            untracked = { text = '│' },
         },
         signcolumn = true,
         current_line_blame_formatter = '<author>, <author_time:%d-%m-%Y> - <summary>',

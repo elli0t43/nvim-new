@@ -2,7 +2,7 @@ local config = function()
     require('lualine').setup {
         options = {
             icons_enabled = true,
-            theme = 'modus-vivendi',
+            theme = 'superuser3',
             component_separators = {left = '', right = ''},
             section_separators = {left = '', right = ''},
         },

@@ -3,7 +3,9 @@ return {
     version = false,
     event = "VeryLazy",
     opts = {
-        symbol = "┋",
+             char = "▏",
+             smart_indent_cap = true,
+        symbol = "",
         options = {
             try_as_border = true
         },

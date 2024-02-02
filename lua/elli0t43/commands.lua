@@ -14,7 +14,7 @@ local build_commands = {
 }
 
 local debug_build_commands = {
-    c = "!gcc -g -o %:p:r.o",
+    c = "!gcc -g -o %:p:r.o %",
     cpp = "!g++ -std=c++17 -g -o %:p:r.o %",
     rust = "!cargo build",
     go = "!go build",
