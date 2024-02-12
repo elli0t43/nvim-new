@@ -28,16 +28,12 @@ local config = function()
     require('mason-lspconfig').setup({
         ensure_installed = {
             "clangd", -- C/CPP
-            "dockerls", -- Docker
-            "gopls", -- Golang
-            "html", -- HTML
-            "tsserver", -- JS/TS
             "lua_ls", -- Lua
-            "pylyzer", -- Python
-            "bashls", -- Bash
-            "cssls", -- css 
             "jsonls", -- JSON
             "yamlls", -- YAML
+            "tsserver", -- JS/TS
+            "html", -- HTML
+            "cssls", -- CSS
         },
         handlers = {
             lsp_zero.default_setup,
@@ -79,7 +75,7 @@ local config = function()
 
             -- clangd config
             clangd = function ()
-                require('lspconfig').clangd.setup({
+                require("lspconfig").clangd.setup({
                     capabilities = capabilities,
                     single_file_support = true,
                 })
@@ -157,7 +153,7 @@ local config = function()
     -- SNIPPETS STUFF --
     local types = require("luasnip.util.types")
     require("luasnip.loaders.from_lua").load({
-        paths = "~/.config/nvim/snippets/"
+        paths = "C:\\Users\\elli0t43\\AppData\\Local\\nvim\\luasnippets"
     })
     require("luasnip.loaders.from_vscode").lazy_load()
     require('luasnip').setup({
@@ -175,7 +171,6 @@ local config = function()
     })
 
 end
-
 
 -- lsp zero
 return {

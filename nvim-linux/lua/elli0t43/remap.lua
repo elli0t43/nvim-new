@@ -90,3 +90,7 @@ nnoremap("<leader>O", ":SymbolsOutlineClose<CR>", silent)
 -- GITSIGNS
 nnoremap("<leader>gp", ":Gitsigns preview_hunk<CR>", silent)
 nnoremap("<leader>gt", ":Gitsigns toggle_current_line_blame<CR>", silent)
+
+-- OBSIDIAN 
+nnoremap("<leader>oo", ":ObsidianOpen<CR>", silent)
+nnoremap("<leader>ob", ":ObsidianBacklinks<CR>", silent)
