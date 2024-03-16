@@ -34,6 +34,7 @@ local config = function()
             "tsserver", -- JS/TS
             "html", -- HTML
             "cssls", -- CSS
+            "texlab",
         },
         handlers = {
             lsp_zero.default_setup,
@@ -95,7 +96,21 @@ local config = function()
                     capabilities = capabilities,
                     single_file_support = true,
                 })
+            end,
+
+            texlab = function ()
+                require("lspconfig").texlab.setup({
+                    filetypes = {
+                        "markdown",
+                        "md",
+                        "tex",
+                        "plaintex",
+                        "bib",
+                    },
+                    single_file_support = true,
+                })
             end
+
         },
     })
 
