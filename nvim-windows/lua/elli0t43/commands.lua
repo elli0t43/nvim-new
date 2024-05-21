@@ -8,14 +8,14 @@ local vnoremap = Remap.vnoremap
 
 local build_commands = {
     c = "!gcc -o %:p:r.o %",
-    cpp = "!g++ -std=c++17 -Wall -O2 -o %:p:r.o %",
+    cpp = "!g++ -std=c++17 -Wall -O2 -DNDEBUG -o %:p:r.o %",
     rust = "!cargo build --release",
     go = "!go build",
 }
 
 local debug_build_commands = {
     c = "!gcc -g -o %:p:r.o %",
-    cpp = "!g++ -std=c++17 -g -o %:p:r.o %",
+    cpp = "!g++ -std=c++17 -ggdb -o %:p:r.o %",
     rust = "!cargo build",
     go = "!go build",
 }
@@ -29,7 +29,7 @@ local run_commands = {
     python = "!python3 %:p:r.py"
 }
 
-vim.api.nvim_create_user_command("Build", function()
+vim.api.nvim_create_user_command("ReleaseBuild", function()
     local filetype = vim.bo.filetype
 
     for file, command in pairs(build_commands) do
@@ -51,7 +51,6 @@ vim.api.nvim_create_user_command("DebugBuild", function()
     end
 end, {})
 
-
 vim.api.nvim_create_user_command("Run", function()
     local filetype = vim.bo.filetype
     for file, command in pairs(run_commands) do
@@ -66,6 +65,14 @@ vim.api.nvim_create_user_command("BuildRun", function()
     vim.cmd([[Run]])
 end, {})
 
+vim.api.nvim_create_user_command("DebugBuildRun", function()
+    vim.cmd([[DebugBuild]])
+    vim.cmd([[Run]])
+end, {})
+
+
 vim.api.nvim_create_user_command("NvimConfig", function()
     vim.cmd([[cd ~/.config/nvim]])
 end, {})
+
+

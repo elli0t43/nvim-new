@@ -5,7 +5,7 @@ local options = {
     tabstop = 4,
     shiftwidth = 4,
     expandtab = true,
-    wrap = false,
+    wrap = true,
 
     -- Search 
     incsearch = true,

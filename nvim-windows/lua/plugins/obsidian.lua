@@ -41,7 +41,8 @@ local config = function()
         open_notes_in = "current",
         yaml_parser = "native",
         ui = {
-            enable = false,
+            enable = true,
+            tags = { h1_group = "ObsidianTag" },
         },
     })
 end

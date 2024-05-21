@@ -1,11 +1,11 @@
 local config = function()
     local lsp_zero = require('lsp-zero')
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local util = require('lspconfig.util')
 
     lsp_zero.on_attach(function(client, bufnr)
         lsp_zero.default_keymaps({buffer = bufnr})
     end)
-    local lsp_zero = require('lsp-zero')
 
     lsp_zero.on_attach(function(client, bufnr)
         -- see :help lsp-zero-keybindings
@@ -13,6 +13,13 @@ local config = function()
         lsp_zero.default_keymaps({buffer = bufnr})
     end)
 
+    local on_attach = function(client, bufnr)
+
+        if client.server_capabilities.inlayHintProvider then
+            vim.lsp.buf.inlay_hint(bufnr, true)
+        end
+
+    end
     -- MASON STUFF --
     -- see :help lsp-zero-guide:integrate-with-mason-nvim
     -- to learn how to use mason.nvim with lsp-zero
@@ -32,9 +39,10 @@ local config = function()
             "jsonls", -- JSON
             "yamlls", -- YAML
             "tsserver", -- JS/TS
+            "biome", -- JS/TS
             "html", -- HTML
             "cssls", -- CSS
-            "texlab",
+            "texlab", -- LaTex
         },
         handlers = {
             lsp_zero.default_setup,
@@ -45,6 +53,29 @@ local config = function()
                 require('lspconfig').lua_ls.setup({
                     lua_opts,
                     capabilities = capabilities,
+                })
+            end,
+
+            -- css
+            cssls = function ()
+                require('lspconfig').cssls.setup({
+                    filetypes = {
+                        "css",
+                        "scss",
+                        "less",
+                    },
+                    settings = {
+                        css = {
+                            validate = true
+                        },
+                        less = {
+                            validate = true
+                        },
+                        scss = {
+                            validate = true
+                        },
+                    },
+                    single_file_support = true,
                 })
             end,
 
@@ -78,6 +109,36 @@ local config = function()
             clangd = function ()
                 require("lspconfig").clangd.setup({
                     capabilities = capabilities,
+                    settings = {
+                        filetypes = {
+                            "c",
+                            "cpp",
+                            "h",
+                            "obj",
+                            "dll"
+                        },
+                    },
+                    root_dir = util.root_pattern('.git'),
+                    single_file_support = true,
+                })
+            end,
+
+            biome = function ()
+                require('lspconfig').biome.setup({
+                    cmd = {
+                        "biome", "lsp-proxy"
+                    },
+                    filetypes = {
+                        "javascript",
+                        "js",
+                        "javascriptreact",
+                        "javascript.js",
+                        "json",
+                        "jsonc",
+                        "typescript",
+                        "typescript.tsx",
+                        "typescriptreact",
+                    },
                     single_file_support = true,
                 })
             end,
@@ -85,7 +146,22 @@ local config = function()
             -- tsserver config
             tsserver = function ()
                 require("lspconfig").tsserver.setup({
-                    capabilities = capabilities,
+                    cmd = {
+                        "typescript-language-server", "--stdio"
+                    },
+                    filetypes = {
+                        "javascript",
+                        "js",
+                        "javascript.js",
+                        "javascriptreact",
+                        "javascript.jsx",
+                        "typescript",
+                        "typescriptreact",
+                        "typescript.tsx"
+                    },
+                    init_options = {
+                        hostInfo = "neovim"
+                    },
                     single_file_support = true,
                 })
             end,
