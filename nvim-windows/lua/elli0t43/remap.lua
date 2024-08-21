@@ -55,6 +55,15 @@ nnoremap("<C-a>", "gg<S-v>G")
 -- terminal
 nnoremap("<leader>tr", ":terminal<CR>")
 
+-- -- ONLY IF USING NEOVIDE --
+-- nnoremap('<D-s', ':w<CR>') -- save
+-- nnoremap('<D-v>', '"+p') -- paste normal mode
+-- vnoremap('<D-c>', '"+y') -- Copy
+-- vnoremap('<D-v>', '"+p') --paste visual mode
+-- inoremap('<D-v>', '<ESC>l"+pli')
+
+
+
 
 -- PLUGIN HOT KEYS --
 
@@ -95,3 +104,17 @@ nnoremap("<leader>gt", ":Gitsigns toggle_current_line_blame<CR>", silent)
 nnoremap("<leader>oo", ":ObsidianOpen<CR>", silent)
 nnoremap("<leader>ob", ":ObsidianBacklinks<CR>", silent)
 nnoremap("<leader>tt", ":ObsidianTemplate<CR>", silent)
+
+if vim.g.neovide then
+    vim.keymap.set('n', '<C-s>', ':w<CR>') -- Save
+    vim.keymap.set('v', '<C-c>', '"+y') -- Copy
+    vim.keymap.set('n', '<C-v>', '"+P') -- Paste normal mode
+    vim.keymap.set('v', '<C-v>', '"+P') -- Paste visual mode
+    vim.keymap.set('c', '<C-v>', '<C-R>+') -- Paste command mode
+    vim.keymap.set('i', '<C-v>', '<ESC>l"+Pli') -- Paste insert mode
+    -- Allow clipboard copy paste in neovim
+    vim.api.nvim_set_keymap('', '<C-v>', '+p<CR>', { noremap = true, silent = true})
+    vim.api.nvim_set_keymap('!', '<C-v>', '<C-R>+', { noremap = true, silent = true})
+    vim.api.nvim_set_keymap('t', '<C-v>', '<C-R>+', { noremap = true, silent = true})
+    vim.api.nvim_set_keymap('v', '<C-v>', '<C-R>+', { noremap = true, silent = true})
+end

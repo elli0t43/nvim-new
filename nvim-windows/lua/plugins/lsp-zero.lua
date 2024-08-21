@@ -43,6 +43,7 @@ local config = function()
             "html", -- HTML
             "cssls", -- CSS
             "texlab", -- LaTex
+            "gopls", -- go
         },
         handlers = {
             lsp_zero.default_setup,
@@ -114,8 +115,15 @@ local config = function()
                             "c",
                             "cpp",
                             "h",
-                            "obj",
-                            "dll"
+                            "hpp",
+                        },
+                        inlayHints = {
+                            enumMemberValues = { enabled = true },
+                            functionLikeReturnTypes = { enabled = true },
+                            parameterNames = { enabled = true },
+                            parameterTypes = { enabled = true },
+                            propertyDeclarationTypes = { enabled = true },
+                            variableTypes = { enabled = true },
                         },
                     },
                     root_dir = util.root_pattern('.git'),
@@ -127,6 +135,16 @@ local config = function()
                 require('lspconfig').biome.setup({
                     cmd = {
                         "biome", "lsp-proxy"
+                    },
+                    settings = {
+                        inlayHints = {
+                            enumMemberValues = { enabled = true },
+                            functionLikeReturnTypes = { enabled = true },
+                            parameterNames = { enabled = true },
+                            parameterTypes = { enabled = true },
+                            propertyDeclarationTypes = { enabled = true },
+                            variableTypes = { enabled = true },
+                        },
                     },
                     filetypes = {
                         "javascript",
@@ -149,6 +167,16 @@ local config = function()
                     cmd = {
                         "typescript-language-server", "--stdio"
                     },
+                    settings = {
+                        inlayHints = {
+                            enumMemberValues = { enabled = true },
+                            functionLikeReturnTypes = { enabled = true },
+                            parameterNames = { enabled = true },
+                            parameterTypes = { enabled = true },
+                            propertyDeclarationTypes = { enabled = true },
+                            variableTypes = { enabled = true },
+                        },
+                    },
                     filetypes = {
                         "javascript",
                         "js",
@@ -169,6 +197,16 @@ local config = function()
             -- bashls config
             bashls = function ()
                 require("lspconfig").bashls.setup({
+                    settings = {
+                        inlayHints = {
+                            enumMemberValues = { enabled = true },
+                            functionLikeReturnTypes = { enabled = true },
+                            parameterNames = { enabled = true },
+                            parameterTypes = { enabled = true },
+                            propertyDeclarationTypes = { enabled = true },
+                            variableTypes = { enabled = true },
+                        },
+                    },
                     capabilities = capabilities,
                     single_file_support = true,
                 })

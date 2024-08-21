@@ -23,7 +23,6 @@ local config = function()
           "css",
           "markdown",
           "markdown_inline",
-          "svelte",
           "graphql",
           "bash",
           "lua",
@@ -31,6 +30,7 @@ local config = function()
           "dockerfile",
           "gitignore",
           "query",
+          "go",
         },
       })
 end
